@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.name');
@@ -30,3 +26,9 @@ Route::middleware('auth')
     ->group(function () {
         Route::resource('products', 'ProductController');
     });
+
+// Generic Route
+
+Route::get('{any?}', function() {
+    return view('home');
+})->where('any','.*');
