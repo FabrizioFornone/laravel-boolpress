@@ -26,9 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         //testing Auth User implementations
-        if (Auth::check()) {
-            dump(Auth::user());
-        }
+        // if (Auth::check()) {
+        //     dump(Auth::user());
+        // }
 
 
         return view('admin.home');
