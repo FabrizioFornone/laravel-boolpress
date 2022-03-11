@@ -22,6 +22,9 @@ Vue.component(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import App from "./views/App.vue";
+
 const app = new Vue({
     el: "#app",
+    render: (h) => h(App)
 });
