@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.name');
+
+Route::middleware('auth')
+->namespace('Admin')
+->prefix('admin')
+->name('admin.')
+->group(function() {
+Route::resource('products', 'ProductController');
+});
