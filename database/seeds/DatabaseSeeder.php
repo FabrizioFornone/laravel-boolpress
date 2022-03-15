@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Category;
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+
+        $categories = [
+            'Fantasy',
+            'Thriller',
+            'Sci-Fi',
+            'Crime',
+            'Adventure',
+            'Horror'
+        ];
+
+        foreach ($categories as $category) {
+            $newCategory = new Category();
+
+            $newCategory->code = $category;
+
+            $newCategory->save();
+        }
     }
 }

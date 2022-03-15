@@ -14,8 +14,16 @@
                         @foreach ($posts as $post)
 
                         <li class="list-group-item d-flex justify-content-between">
-                            <div>
-                                {{ $post->title }}
+                            <div class="d-flex">
+                                <div>
+                                    {{ $post->title }}
+                                </div>
+                                <div class="px-2">
+                                    {{ $post->user->name }}
+                                </div>
+                                <div class="px-2">
+                                    {{ isset($post->category) ? $post->category->code : "senza categoria" }}
+                                </div>
                             </div>
                             <div>
                                 <a class="ms-auto" href="{{ route('admin.posts.show', $post->id) }}">Mostra</a>

@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where("user_id", Auth::user()->id)->get();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -31,8 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
 
-        return view('admin.posts.create');
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -99,14 +100,14 @@ class PostController extends Controller
             "title" => "required|min:5",
             "content" => "required|min:20",
             "category_id" => "nullable",
-          ]);
-      
-          $post = Post::findOrFail($id);
+        ]);
+
+        $post = Post::findOrFail($id);
 
 
-          $post->update($data);
+        $post->update($data);
 
-          return redirect()->route("admin.posts.show", $post->id);
+        return redirect()->route("admin.posts.show", $post->id);
     }
 
     /**
