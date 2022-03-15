@@ -39,16 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-    $data = $request->validate([
-        'title'=> 'required',
-        'content'=>'required'
-    ]);
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
 
-    $post = new Post();
-    $post->fill($data);
+        $post = new Post();
+        $post->fill($data);
 
-    $post->save();
+        $post->save();
 
+        return redirect()->route("admin.posts.index");
     }
 
     /**
@@ -82,7 +83,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
