@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +39,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $data = $request->validate([
+        'title'=> 'required',
+        'content'=>'required'
+    ]);
+
+    $post = new Post();
+    $post->fill($data);
+
+    $post->save();
+
     }
 
     /**

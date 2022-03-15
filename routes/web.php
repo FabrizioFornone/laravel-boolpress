@@ -24,11 +24,11 @@ Route::middleware('auth')
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::resource('products', 'ProductController');
+        Route::resource('posts', 'PostController');
     });
 
 // Generic Route
 
-Route::get('{any?}', function() {
+Route::get('{any?}', function () {
     return view('home');
-})->where('any','.*');
+})->where('any', '.*');

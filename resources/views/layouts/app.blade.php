@@ -66,6 +66,9 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.posts.index') }}">Post</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
