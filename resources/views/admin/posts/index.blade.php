@@ -10,10 +10,17 @@
                 </div>
 
                 <div class="card-body">
-                    <ul class="list-group">
+                    <ul class="list-group d-flex">
                         @foreach ($posts as $post)
 
-                        <li class="list-group-item">{{ $post->title }}</li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div>
+                                {{ $post->title }}
+                            </div>
+                            <div>
+                                <a class="ms-auto" href="{{ route('admin.posts.show', $post->id) }}">Mostra</a>
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
