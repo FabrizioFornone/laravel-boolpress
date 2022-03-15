@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
+
         return view('admin.posts.create');
     }
 
@@ -49,7 +51,7 @@ class PostController extends Controller
         $post = new Post();
         $post->fill($data);
 
-        $post->user_id = Auth::user()->id;
+        $post->user_id = Auth::id();
 
 
         $post->save();
@@ -74,9 +76,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+
+        return view("admin.posts.edit", [
+            "post" => $post,
+            "categories" => $categories
+        ]);
     }
 
     /**
@@ -88,6 +95,18 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            "title" => "required|min:5",
+            "content" => "required|min:20",
+            "category_id" => "nullable",
+          ]);
+      
+          $post = Post::findOrFail($id);
+
+
+          $post->update($data);
+
+          return redirect()->route("admin.posts.show", $post->id);
     }
 
     /**
