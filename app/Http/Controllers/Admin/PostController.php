@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +34,9 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -45,8 +48,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required',
-            'content' => 'required'
+            "title" => "required|min:5",
+            "content" => "required|min:20",
+            "category_id" => "nullable|exists:categories,id",
+            "tags" => "nullable|exists:tags,id"
         ]);
 
         $post = new Post();
@@ -56,6 +61,8 @@ class PostController extends Controller
 
 
         $post->save();
+
+        $post->tags()->attach($data['tags']);
 
         return redirect()->route("admin.posts.index");
     }
@@ -80,10 +87,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
         return view("admin.posts.edit", [
             "post" => $post,
-            "categories" => $categories
+            "categories" => $categories,
+            "tags" => $tags
         ]);
     }
 
@@ -99,13 +108,16 @@ class PostController extends Controller
         $data = $request->validate([
             "title" => "required|min:5",
             "content" => "required|min:20",
-            "category_id" => "nullable",
+            "category_id" => "nullable|exists:categories,id",
+            "tags" => "nullable|exists:tags,id"
         ]);
 
         $post = Post::findOrFail($id);
 
 
         $post->update($data);
+
+        $post->tags()->sync($data['tags']);
 
         return redirect()->route("admin.posts.show", $post->id);
     }

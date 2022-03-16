@@ -40,6 +40,15 @@
                     </div>
                     @endif
 
+                    @if ($post->tags !== null)
+                    <div class="my-3">
+                        tags:
+                        @foreach ($post->tags as $tag)
+                        <div>{{ $tag->name }}</div>
+                        @endforeach
+                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>

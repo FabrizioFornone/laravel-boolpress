@@ -37,13 +37,22 @@
                         <div class="mb-3">
                             <label>Categoria</label>
                             <select name="category_id" class="form-select">
-                              <option value="">-- nessuna categoria --</option>
-                              @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" @if (old('category_id')=== $category->id) selected @endIf>
-                                  {{ $category->code }}</option>
-                              @endforeach
+                                <option value="">-- nessuna categoria --</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if (old('category_id')===$category->id) selected
+                                    @endIf>
+                                    {{ $category->code }}</option>
+                                @endforeach
                             </select>
-                          </div>
+                        </div>
+
+                        <div class="form-check form-check-inline mb-3">
+                            @foreach ($tags as $tag)
+                            <label class="form-check-label mr-2" for="tag_{{$tag->id}}">{{ $tag->name }}</label>
+                            <input type="checkbox" class="form-check-input" value="{{ $tag->id }}" id="tag_{{$tag->id}}"
+                                name="tags[]">
+                            @endforeach
+                        </div>
 
                         <div class="form-group">
                             <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Annulla</a>

@@ -1,59 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header d-flex">
-            Aggiunta di un nuovo post
-          </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header d-flex">
+          Aggiunta di un nuovo post
+        </div>
 
-          <div class="card-body">
+        <div class="card-body">
 
-            <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
-              @csrf
-              @method("patch")
+          <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+            @csrf
+            @method("patch")
 
-              {{-- titolo --}}
-              <div class="mb-3">
-                <label>Titolo</label>
-                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
-                  placeholder="Inserisci il titolo" value="{{ old('title', $post->title) }}" required>
-                @error('title')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+            {{-- titolo --}}
+            <div class="mb-3">
+              <label>Titolo</label>
+              <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                placeholder="Inserisci il titolo" value="{{ old('title', $post->title) }}" required>
+              @error('title')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>
 
-              {{-- contenuto del post --}}
-              <div class="mb-3">
-                <label>Contenuto</label>
-                <textarea name="content" rows="10" class="form-control @error('content') is-invalid @enderror"
-                  placeholder="Inizia a scrivere qualcosa..." required>{{ old('content', $post->content) }}</textarea>
-                @error('content')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+            {{-- contenuto del post --}}
+            <div class="mb-3">
+              <label>Contenuto</label>
+              <textarea name="content" rows="10" class="form-control @error('content') is-invalid @enderror"
+                placeholder="Inizia a scrivere qualcosa..." required>{{ old('content', $post->content) }}</textarea>
+              @error('content')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>
 
-              <div class="mb-3">
-                <label>Categoria</label>
-                <select name="category_id" class="form-select">
-                  <option value="">Nessuna Categoria</option>
-                  @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" @if ($post->category_id === $category->id) selected @endIf>
-                      {{ $category->code }}</option>
-                  @endforeach
-                </select>
-              </div>
+            <div class="mb-3">
+              <label>Categoria</label>
+              <select name="category_id" class="form-select">
+                <option value="">Nessuna Categoria</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}" @if ($post->category_id === $category->id) selected @endIf>
+                  {{ $category->code }}</option>
+                @endforeach
+              </select>
+            </div>
 
-              <div class="form-group">
-                <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-secondary">Annulla</a>
-                <button type="submit" class="btn btn-success">Salva post</button>
-              </div>
-            </form>
-          </div>
+            <div class="form-check form-check-inline mb-3">
+                @foreach ($tags as $tag)
+                <label class="form-check-label mr-2" for="tag_{{$tag->id}}">{{ $tag->name }}</label>
+                <input type="checkbox" class="form-check-input" value="{{ $tag->id }}" id="tag_{{$tag->id}}" name="tags[]">
+                @endforeach
+            </div>
+
+            <div class="form-group">
+              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-secondary">Annulla</a>
+              <button type="submit" class="btn btn-success">Salva post</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 @endsection
