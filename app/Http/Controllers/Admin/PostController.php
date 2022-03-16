@@ -62,7 +62,13 @@ class PostController extends Controller
 
         $post->save();
 
-        $post->tags()->attach($data['tags']);
+        if (key_exists("tags", $data)) {
+
+            $post->tags()->attach($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
+
 
         return redirect()->route("admin.posts.index");
     }
@@ -117,7 +123,12 @@ class PostController extends Controller
 
         $post->update($data);
 
-        $post->tags()->sync($data['tags']);
+        if (key_exists("tags", $data)) {
+
+            $post->tags()->sync($data["tags"]);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect()->route("admin.posts.show", $post->id);
     }
@@ -130,6 +141,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->tags()->detach();
+
+        $post->delete();
+
+        return redirect()->route("admin.posts.index");
     }
 }
