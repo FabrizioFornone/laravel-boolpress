@@ -35,7 +35,7 @@
                             @else
 
                             {{ $post->updated_at->format($dateFormat) }}
-                            
+
                             @endif
                         </span>
                     </div>
@@ -56,9 +56,13 @@
                     </div>
                     @endif
 
+                    @if ($post->image !== null)
                     <div class="my-3">
-                        <img class="col-3" src="{{$post->image}}" alt="">
+                        Image:
+                        <img class="col-2" src="{{$post->image}}" alt="">
                     </div>
+                    @endif
+
 
                     @if ($post->tags->count()!=0)
                     <div class="my-3">
