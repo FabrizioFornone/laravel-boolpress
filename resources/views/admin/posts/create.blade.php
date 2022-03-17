@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div>
-                        Aggiunta di un nuovo post
+                        New Post
                     </div>
                     <div>
                         <a href="{{ route('admin.posts.index') }}" title="back"><i
@@ -21,7 +21,7 @@
 
                         {{-- titolo --}}
                         <div class="mb-3">
-                            <label>Titolo</label>
+                            <label>Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
                                 placeholder="Inserisci il titolo" value="{{ old('title') }}" required>
                             @error('title')
@@ -31,7 +31,7 @@
 
                         {{-- contenuto del post --}}
                         <div class="mb-3">
-                            <label>Contenuto</label>
+                            <label>Content</label>
                             <textarea name="content" rows="10"
                                 class="form-control @error('content') is-invalid @enderror"
                                 placeholder="Inizia a scrivere qualcosa..." required>{{ old('content') }}</textarea>
@@ -41,15 +41,25 @@
                         </div>
 
                         <div class="mb-3">
-                            <label>Categoria</label>
+                            <label>Category</label>
                             <select name="category_id" class="form-select">
-                                <option value="">-- nessuna categoria --</option>
+                                <option value="">-- no category --</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" @if (old('category_id')===$category->id) selected
                                     @endIf>
                                     {{ $category->code }}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        {{-- Image --}}
+                        <div class="mb-3">
+                            <label>Image</label>
+                            <input type="text" name="image" class="form-control @error('image') is-invalid @enderror"
+                                placeholder="Inserisci l'immagine del post" value="{{ old('image') }}" required>
+                            @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-check form-check-inline mb-3">
@@ -61,8 +71,8 @@
                         </div>
 
                         <div class="form-group">
-                            <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Annulla</a>
-                            <button type="submit" class="btn btn-success">Salva post</button>
+                            <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-success">Save post</button>
                         </div>
                     </form>
                 </div>

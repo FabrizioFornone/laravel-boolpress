@@ -56,6 +56,10 @@
                     </div>
                     @endif
 
+                    <div class="my-3">
+                        <img class="col-3" src="{{$post->image}}" alt="">
+                    </div>
+
                     @if ($post->tags->count()!=0)
                     <div class="my-3">
                         Tags:
