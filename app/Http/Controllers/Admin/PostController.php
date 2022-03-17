@@ -117,6 +117,7 @@ class PostController extends Controller
         $data = $request->validate([
             "title" => "required|min:5",
             "content" => "required|min:20",
+            'image' => 'nullable',
             "category_id" => "nullable|exists:categories,id",
             "tags" => "nullable|exists:tags,id"
         ]);
