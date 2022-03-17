@@ -81,7 +81,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view("admin.posts.show", compact("post"));
+        $dateFormat = 'd/m/Y';
+
+        return view("admin.posts.show", compact("post", 'dateFormat'));
     }
 
     /**

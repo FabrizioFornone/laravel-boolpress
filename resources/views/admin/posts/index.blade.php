@@ -6,7 +6,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">Posts List
-                    <a href="{{ route('admin.posts.create')}}">Add new post</a>
+                    <a href="{{ route('admin.posts.create')}}"><i class="fa-solid fa-plus"></i></a>
                 </div>
 
                 <div class="card-body">
@@ -34,17 +34,20 @@
                                 </div>
                                 @endif
                             </div>
-                            <div class="d-flex flex-column justify-content-between">
-                                <div class="text-center">
-                                    <a href="{{ route('admin.posts.show', $post->id) }}">Show</a>
+                            <div class="d-flex align-items-center">
+                                <div class="mx-3">
+                                    <a href="{{ route('admin.posts.show', $post->id) }}" title="show"><i
+                                            class="fa-solid fa-eye"></i></a>
                                 </div>
 
-                                <form class="ms-auto" action="{{ route('admin.posts.destroy', $post->id) }}"
-                                    method="post">
+                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
                                     @csrf
                                     @method("delete")
 
-                                    <input type="submit" value="Delete">
+                                    <button type="submit" class="btn btn-link">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </li>
                         @endforeach

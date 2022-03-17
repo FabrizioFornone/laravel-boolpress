@@ -6,7 +6,13 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    Aggiunta di un nuovo post
+                    <div>
+                        Aggiunta di un nuovo post
+                    </div>
+                    <div>
+                        <a href="{{ route('admin.posts.index') }}" title="back"><i
+                                class="fa-solid fa-arrow-left"></i></a>
+                    </div>
                 </div>
 
                 <div class="card-body">

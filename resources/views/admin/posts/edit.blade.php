@@ -46,11 +46,12 @@
               </select>
             </div>
 
-            <div class="form-check form-check-inline mb-3">
-                @foreach ($tags as $tag)
-                <label class="form-check-label ml-3 mr-1" for="tag_{{$tag->id}}">{{ $tag->name }}</label>
-                <input type="checkbox" class="form-check-input" value="{{ $tag->id }}" id="tag_{{$tag->id}}" name="tags[]" {{ $post->tags->contains($tag) ? 'checked' : '' }}>
-                @endforeach
+            <div class="form-check form-check-inline d-flex flex-wrap mb-3">
+              @foreach ($tags as $tag)
+              <label class="form-check-label ml-3 mr-1" for="tag_{{$tag->id}}">{{ $tag->name }}</label>
+              <input type="checkbox" class="form-check-input" value="{{ $tag->id }}" id="tag_{{$tag->id}}" name="tags[]"
+                {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+              @endforeach
             </div>
 
             <div class="form-group">

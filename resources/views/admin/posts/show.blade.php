@@ -9,7 +9,12 @@
                     <div href="{{ route('admin.posts.index') }}" class="me-2">
                         {{ $post->title }}
                     </div>
-                    <a class="ms-auto" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+                    <div>
+                        <a class="mx-5" href="{{ route('admin.posts.index') }}" title="back"><i
+                                class="fa-solid fa-arrow-left"></i></a>
+                        <a href="{{ route('admin.posts.edit', $post->id) }}" title="edit"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -19,20 +24,31 @@
                     </p>
 
                     <div class="my-3">
-                        Data creazione: <span class="mx-2">{{ $post->created_at }}</span>
+                        Data creazione: <span class="mx-1">{{ $post->created_at->format($dateFormat)}}</span>
                         <br>
-                        Data ultima modifica: <span class="mx-2">{{ $post->updated_at }}</span>
+                        Data ultima modifica:
+                        <span class="mx-1">
+                            @if( $post->updated_at->diffInHours(date(0)) >= 12)
+
+                            {{ $post->updated_at->diffForHumans(date(0)) }}
+
+                            @else
+
+                            {{ $post->updated_at->format($dateFormat) }}
+                            
+                            @endif
+                        </span>
                     </div>
 
                     <div class="my-3">
-                        Utente: <span class="mx-2">{{ $post->user->name }}</span>
+                        Utente: <span class="mx-1">{{ $post->user->name }}</span>
                         <br>
-                        Email: <span class="mx-2">{{ $post->user->email }}</span>
+                        Email: <span class="mx-1">{{ $post->user->email }}</span>
                     </div>
 
                     @if ($post->category !== null)
                     <div class="my-3">
-                        Categoria: <span class="mx-2"> {{ $post->category->code }}</span>
+                        Categoria: <span class="mx-1"> {{ $post->category->code }}</span>
                         <br>
                         @if ($post->category->description !== null)
                         Descrizione: {{ $post->category->description }}
@@ -44,7 +60,7 @@
                     <div class="my-3">
                         Tags:
                         @foreach ($post->tags as $tag)
-                        <span class="mx-2">{{ $tag->name }}</span>
+                        <span class="mx-1">{{ $tag->name }}</span>
                         @endforeach
                     </div>
                     @endif
