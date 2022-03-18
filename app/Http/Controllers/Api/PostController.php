@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        $posts->load("user", 'tags');
+        $posts->load("user", 'tags', 'category');
 
 
         return response()->json($posts);
