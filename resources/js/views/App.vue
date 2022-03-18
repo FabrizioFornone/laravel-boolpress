@@ -2,7 +2,7 @@
     <div class="container my-3 py-5">
         <h1 class="py-4">LaravelBlog</h1>
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row">
             <PostCard v-for="post of posts" :key="post.id" :postProp="post">
             </PostCard>
         </div>

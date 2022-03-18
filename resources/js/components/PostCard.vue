@@ -1,5 +1,5 @@
 <template>
-    <div class="col">
+    <div class="col-4">
         <div class="card">
             <img :src="postImage(postProp)" alt="" />
             <div class="card-body">

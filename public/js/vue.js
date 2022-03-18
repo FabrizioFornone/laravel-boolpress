@@ -2555,7 +2555,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col" }, [
+  return _c("div", { staticClass: "col-4" }, [
     _c("div", { staticClass: "card" }, [
       _c("img", { attrs: { src: _vm.postImage(_vm.postProp), alt: "" } }),
       _vm._v(" "),
@@ -2616,7 +2616,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row row-cols-1 row-cols-md-2 g-4" },
+      { staticClass: "row" },
       _vm._l(_vm.posts, function (post) {
         return _c("PostCard", { key: post.id, attrs: { postProp: post } })
       }),
