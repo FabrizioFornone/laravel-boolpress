@@ -89,11 +89,7 @@
         @endif
 
         <div id="app">
-            <ul>
-                <li v-for="i in 10" v-html="i">
-
-                </li>
-            </ul>
+           
 
         </div>
     </div>
