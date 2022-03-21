@@ -28,7 +28,10 @@
                         v-for="route in routes"
                         :key="route.path"
                     >
-                        <router-link class="nav-link" :to="route.path">
+                        <router-link
+                            class="nav-link"
+                            :to="!route.path ? '/' : route.path"
+                        >
                             {{ route.meta.linkText }}
                         </router-link>
                     </li>
