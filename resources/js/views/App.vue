@@ -2,7 +2,7 @@
     <div>
         <TheNavbar></TheNavbar>
 
-        <div class="container my-3 py-5">
+        <div class="container my-5 py-5">
             <router-view></router-view>
         </div>
     </div>

@@ -5,6 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
+                @if ($post->image !== null)
+                <div class="position-absolute img-show d-flex justify-content-center">
+                        <img class="" src="{{$post->image}}" alt="">
+                </div>
+                @endif
                 <div class="card-header d-flex justify-content-between">
                     <div href="{{ route('admin.posts.index') }}" class="me-2">
                         {{ $post->title }}
@@ -23,7 +28,7 @@
                         {!! $post->content !!}
                     </p>
 
-                    <div class="my-3">
+                    <div class="my-5">
                         Data creazione: <span class="mx-1">{{ $post->created_at->format($dateFormat)}}</span>
                         <br>
                         Data ultima modifica:
@@ -40,14 +45,14 @@
                         </span>
                     </div>
 
-                    <div class="my-3">
+                    <div class="my-5">
                         Utente: <span class="mx-1">{{ $post->user->name }}</span>
                         <br>
                         Email: <span class="mx-1">{{ $post->user->email }}</span>
                     </div>
 
                     @if ($post->category !== null)
-                    <div class="my-3">
+                    <div class="my-5">
                         Categoria: <span class="mx-1"> {{ $post->category->code }}</span>
                         <br>
                         @if ($post->category->description !== null)
@@ -56,16 +61,8 @@
                     </div>
                     @endif
 
-                    @if ($post->image !== null)
-                    <div class="my-3">
-                        Image:
-                        <img class="col-2" src="{{$post->image}}" alt="">
-                    </div>
-                    @endif
-
-
                     @if ($post->tags->count()!=0)
-                    <div class="my-3">
+                    <div class="my-5">
                         Tags:
                         @foreach ($post->tags as $tag)
                         <span class="mx-1">{{ $tag->name }}</span>

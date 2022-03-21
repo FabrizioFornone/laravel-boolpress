@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="row">
-            <PostCard v-for="post of posts" :key="post.id" :postProp="post">
+        <div class="row flex-wrap mb-4">
+            <PostCard class="col-6 col-md-4 col-lg-3 col-xxl-2 my-3" v-for="post of posts" :key="post.id" :postProp="post">
             </PostCard>
         </div>
     </div>

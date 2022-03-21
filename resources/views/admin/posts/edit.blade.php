@@ -54,7 +54,7 @@
             <div class="mb-3">
               <label>Image</label>
               <input type="text" name="image" class="form-control @error('image') is-invalid @enderror"
-                placeholder="Inserisci l'immagine del post" value="{{ old('image') }}" required>
+                placeholder="Inserisci l'immagine del post" value="{{ old('image', $post->image) }}" required>
               @error('image')
               <div class="invalid-feedback">{{ $message }}</div>
               @enderror

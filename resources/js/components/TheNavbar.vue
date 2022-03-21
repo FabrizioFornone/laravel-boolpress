@@ -1,7 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Laravel Boolpress</a>
+            <!-- Left Side Of Navbar -->
+            <a class="navbar-brand" href="/">Laravel Blog</a>
 
             <button
                 class="navbar-toggler"
@@ -14,17 +15,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav ms-auto"></ul>
-
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/login"> Admin </a>
                     </li>
                     <li
-                        class="nav-item"
+                        class="nav-item active"
                         v-for="route in routes"
                         :key="route.path"
                     >
@@ -49,7 +47,9 @@ export default {
         };
     },
     mounted() {
-        this.routes = this.$router.getRoutes().filter((el) => el.meta.linkText !== undefined);
+        this.routes = this.$router
+            .getRoutes()
+            .filter((el) => el.meta.linkText !== undefined);
     },
 };
 </script>

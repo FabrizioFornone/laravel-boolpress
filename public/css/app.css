@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);/*!
  * Font Awesome Free 6.1.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
@@ -18714,5 +18714,77 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+body {
+  font-family: "Roboto";
+  background-color: #131313;
+  color: #f0f0f0;
+}
+
+.list-group-item {
+  background-color: #343a40;
+  border: 1px solid #f0f0f0;
+}
+
+.form-control {
+  background-color: #f0f0f0;
+}
+
+.img-show {
+  bottom: 10px;
+  right: 10px;
+}
+
+.img-show img {
+  width: 270px;
+  height: 320px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 15px;
+}
+
+.navbar {
+  height: 60px;
+}
+
+.navbar .username {
+  border: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #f0f0f0bd;
+}
+
+.card,
+.card-box {
+  background-color: #343a40;
+}
+
+.card-box {
+  height: 450px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.card-box:hover {
+  transition: all 0.3s;
+  transform: scale(1.2);
+  z-index: 1001;
+}
+
+.card-box h5,
+.card-box span {
+  font-weight: bolder;
+}
+
+.card-box img {
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 

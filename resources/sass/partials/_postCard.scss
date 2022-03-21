@@ -1,0 +1,30 @@
+.card,
+.card-box {
+    background-color: #343a40;
+}
+
+.card-box {
+    height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    transition: all 0.3s;
+
+    &:hover {
+        transition: all 0.3s;
+        transform: scale(1.2);
+        z-index: 1001;
+    }
+
+    h5,
+    span {
+        font-weight: bolder;
+    }
+    cursor: pointer;
+
+    img {
+        height: 250px;
+        object-fit: cover;
+    }
+}

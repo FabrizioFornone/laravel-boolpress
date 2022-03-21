@@ -10,25 +10,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Styles -->
     <style>
-        html,
-        body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-
         .flex-center {
             align-items: center;
             display: flex;
@@ -46,7 +31,6 @@
         }
 
         .links>a {
-            color: #636b6f;
             padding: 0 25px;
             font-size: 13px;
             font-weight: 600;
@@ -74,7 +58,7 @@
             </div>
             @endif
         </nav>
-        
+
     </div>
 
 

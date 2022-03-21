@@ -1,12 +1,17 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import './partials/variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 // FontAwesome
 @import'~@fortawesome/fontawesome-free/css/all.css';
+
+@import "./partials/main";
+
+@import "./partials/navbar";
+
+@import "./partials/postCard";
+
 
