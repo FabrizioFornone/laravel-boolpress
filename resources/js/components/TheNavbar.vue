@@ -16,20 +16,20 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                </ul>
+                <ul class="navbar-nav ms-auto"></ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/login"> Admin </a>
                     </li>
-                    <li>
-                        <router-link
-                            class="nav-link"
-                            :to="{ name : 'contacts.index' }"
-                        >
-                            Contacts
+                    <li
+                        class="nav-item"
+                        v-for="route in routes"
+                        :key="route.path"
+                    >
+                        <router-link class="nav-link" :to="route.path">
+                            {{ route.meta.linkText }}
                         </router-link>
                     </li>
                 </ul>
@@ -39,7 +39,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            routes: [],
+        };
+    },
+    mounted() {
+        console.log(this.$router.getRoutes());
+
+        this.routes = this.$router.getRoutes();
+    },
+};
 </script>
 
 <style lang="scss" scoped></style>

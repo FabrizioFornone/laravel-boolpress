@@ -2023,7 +2023,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      routes: []
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.$router.getRoutes());
+    this.routes = this.$router.getRoutes();
+  }
+});
 
 /***/ }),
 
@@ -2729,28 +2739,35 @@ var render = function () {
           [
             _c("ul", { staticClass: "navbar-nav ms-auto" }),
             _vm._v(" "),
-            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { to: { name: "contacts.index" } },
-                    },
+            _c(
+              "ul",
+              { staticClass: "navbar-nav ml-auto" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.routes, function (route) {
+                  return _c(
+                    "li",
+                    { key: route.path, staticClass: "nav-item" },
                     [
-                      _vm._v(
-                        "\n                        Contacts\n                    "
+                      _c(
+                        "router-link",
+                        { staticClass: "nav-link", attrs: { to: route.path } },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(route.meta.linkText) +
+                              "\n                    "
+                          ),
+                        ]
                       ),
-                    ]
-                  ),
-                ],
-                1
-              ),
-            ]),
+                    ],
+                    1
+                  )
+                }),
+              ],
+              2
+            ),
           ]
         ),
       ]),
@@ -18595,12 +18612,24 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: "/",
     component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    name: "home.index"
+    name: "home.index",
+    meta: {
+      title: "Homepage",
+      linkText: "Home"
+    }
   }, {
     path: "/contacts",
     component: _pages_Contacts_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    name: "contacts.index"
+    name: "contacts.index",
+    meta: {
+      title: "Contacts",
+      linkText: "Contacts"
+    }
   }]
+});
+router.beforeEach(function (to, from, next) {
+  document.title = to.meta.title;
+  next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
