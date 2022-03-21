@@ -54,7 +54,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post->load("user");
+
+        return response()->json($post);
     }
 
     /**

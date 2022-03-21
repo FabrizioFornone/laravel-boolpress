@@ -11,6 +11,9 @@
                 <strong v-if="postProp.category">
                     {{ postProp.category.code }}
                 </strong>
+                <div class="py-2">
+                     <router-link :to="{ name:'posts.show', params: { post: postProp.id } }"> Details </router-link>
+                </div>
             </div>
         </div>
     </div>
