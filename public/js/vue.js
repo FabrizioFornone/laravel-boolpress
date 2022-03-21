@@ -18360,6 +18360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: "history",
   routes: [{
     path: "/",
     component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
