@@ -1,12 +1,18 @@
 <template>
-    <div class="container my-3 py-5">
-        <router-view></router-view>
+    <div>
+        <TheNavbar></TheNavbar>
+
+        <div class="container my-3 py-5">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+import TheNavbar from "../components/TheNavbar.vue";
 
 export default {
+    components: { TheNavbar },
 };
 </script>
 

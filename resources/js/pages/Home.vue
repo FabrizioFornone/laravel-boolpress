@@ -1,7 +1,5 @@
 <template>
     <div>
-        <h1 class="py-4">LaravelBlog</h1>
-
         <div class="row">
             <PostCard v-for="post of posts" :key="post.id" :postProp="post">
             </PostCard>

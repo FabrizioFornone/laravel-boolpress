@@ -58,25 +58,23 @@
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/admin') }}">Area privata</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
+    <div id="app">
+        <nav class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                <a href="{{ url('/admin') }}">Area privata</a>
+                @else
+                <a href="{{ route('login') }}">Login</a>
 
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}">Register</a>
+                @endif
+                @endauth
+            </div>
             @endif
-            @endauth
-        </div>
-        @endif
-
-        <div id="app">
-
-
-        </div>
+        </nav>
+        
     </div>
 
 
