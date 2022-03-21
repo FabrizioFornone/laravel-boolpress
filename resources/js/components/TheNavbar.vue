@@ -49,9 +49,7 @@ export default {
         };
     },
     mounted() {
-        console.log(this.$router.getRoutes());
-
-        this.routes = this.$router.getRoutes();
+        this.routes = this.$router.getRoutes().filter((el) => el.meta.linkText !== undefined);
     },
 };
 </script>
