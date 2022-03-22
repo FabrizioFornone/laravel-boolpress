@@ -1,9 +1,15 @@
 <template>
     <div>
         <div class="row flex-wrap mb-4">
-            <PostCard class="col-6 col-md-4 col-lg-3 col-xxl-2 my-3" v-for="post of posts" :key="post.id" :postProp="post">
+            <PostCard
+                class="col-6 col-md-4 col-lg-3 col-xxl-2 my-3"
+                v-for="post of posts"
+                :key="post.id"
+                :postProp="post"
+            >
             </PostCard>
         </div>
+        <div v-if="user">Benvenuto {{ user.name }}</div>
     </div>
 </template>
 
@@ -17,6 +23,7 @@ export default {
     data() {
         return {
             posts: [],
+            user: null,
         };
     },
 
@@ -24,12 +31,28 @@ export default {
         fetchPosts() {
             axios.get("/api/posts").then((res) => {
                 this.posts = res.data;
-                console.log(res.data);
             });
+        },
+        getStoreUser() {
+            const storedUser = localStorage.getItem("user");
+
+            if (storedUser) {
+                this.user = JSON.parse(storedUser);
+            } else {
+                this.user = null;
+            }
         },
     },
     mounted() {
         this.fetchPosts();
+
+        // this.getStoredUser();
+
+        // window.addEventListener("storedUserChanged", () => {
+        //     // ogni volta che cambia l'utente, aggiorniamo la variabile locale.
+        //     this.getStoredUser();
+
+        // });
     },
 };
 </script>

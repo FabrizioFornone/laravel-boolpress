@@ -1972,6 +1972,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2013,16 +2015,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      routes: []
+      routes: [],
+      user: null
     };
+  },
+  methods: {
+    fetchUser: function fetchUser() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (resp) {
+        _this.user = resp.data;
+        localStorage.setItem("user", JSON.stringify(resp.data));
+        window.dispatchEvent(new CustomEvent("storedUserChanged"));
+      })["catch"](function (er) {
+        console.error("Utente non loggato");
+        localStorage.removeItem("user");
+        window.dispatchEvent(new CustomEvent("storedUserChanged"));
+      });
+    }
   },
   mounted: function mounted() {
     this.routes = this.$router.getRoutes().filter(function (el) {
       return el.meta.linkText !== undefined;
     });
+    this.fetchUser();
   }
 });
 
@@ -2067,6 +2093,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2075,7 +2107,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      user: null
     };
   },
   methods: {
@@ -2084,12 +2117,24 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/posts").then(function (res) {
         _this.posts = res.data;
-        console.log(res.data);
       });
+    },
+    getStoreUser: function getStoreUser() {
+      var storedUser = localStorage.getItem("user");
+
+      if (storedUser) {
+        this.user = JSON.parse(storedUser);
+      } else {
+        this.user = null;
+      }
     }
   },
   mounted: function mounted() {
-    this.fetchPosts();
+    this.fetchPosts(); // this.getStoredUser();
+    // window.addEventListener("storedUserChanged", () => {
+    //     // ogni volta che cambia l'utente, aggiorniamo la variabile locale.
+    //     this.getStoredUser();
+    // });
   }
 });
 
@@ -3535,8 +3580,6 @@ var render = function () {
               "ul",
               { staticClass: "navbar-nav" },
               [
-                _vm._m(1),
-                _vm._v(" "),
                 _vm._l(_vm.routes, function (route) {
                   return _c(
                     "li",
@@ -3560,6 +3603,30 @@ var render = function () {
                     1
                   )
                 }),
+                _vm._v(" "),
+                _vm.user
+                  ? _c("li", { staticClass: "nav-item active" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "/admin" } },
+                        [
+                          _vm._v(
+                            " " + _vm._s(_vm.user.name.toUpperCase()) + " "
+                          ),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.user
+                  ? _c("li", { staticClass: "nav-item active" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "/login" } },
+                        [_vm._v(" Login ")]
+                      ),
+                    ])
+                  : _vm._e(),
               ],
               2
             ),
@@ -3588,16 +3655,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item active" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "/login" } }, [
-        _vm._v(" Admin "),
-      ]),
-    ])
   },
 ]
 render._withStripped = true
@@ -3658,6 +3715,10 @@ var render = function () {
       }),
       1
     ),
+    _vm._v(" "),
+    _vm.user
+      ? _c("div", [_vm._v("Benvenuto " + _vm._s(_vm.user.name))])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

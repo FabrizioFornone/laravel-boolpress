@@ -15,12 +15,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarSupportedContent"
+            >
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/login"> Admin </a>
-                    </li>
                     <li
                         class="nav-item active"
                         v-for="route in routes"
@@ -33,6 +33,12 @@
                             {{ route.meta.linkText }}
                         </router-link>
                     </li>
+                    <li class="nav-item active" v-if="user">
+                        <a class="nav-link" href="/admin"> {{ user.name.toUpperCase() }} </a>
+                    </li>
+                    <li class="nav-item active" v-if="!user">
+                        <a class="nav-link" href="/login"> Login </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -40,16 +46,40 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
             routes: [],
+            user: null,
         };
+    },
+    methods: {
+        fetchUser() {
+            axios
+                .get("/api/user")
+                .then((resp) => {
+                    this.user = resp.data;
+
+                    localStorage.setItem("user", JSON.stringify(resp.data));
+
+                    window.dispatchEvent(new CustomEvent("storedUserChanged"));
+                })
+                .catch((er) => {
+                    console.error("Utente non loggato");
+
+                    localStorage.removeItem("user");
+
+                    window.dispatchEvent(new CustomEvent("storedUserChanged"));
+                });
+        },
     },
     mounted() {
         this.routes = this.$router
             .getRoutes()
             .filter((el) => el.meta.linkText !== undefined);
+        this.fetchUser();
     },
 };
 </script>

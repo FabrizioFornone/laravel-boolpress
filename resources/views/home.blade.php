@@ -14,16 +14,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Styles -->
     <style>
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
         .top-right {
             position: absolute;
             right: 10px;
@@ -43,18 +33,15 @@
 
 <body>
     <div id="app">
-        <nav class="flex-center position-ref full-height">
+        <nav class="d-flex justify-content-center align-items-center position-relative full-height">
             @if (Route::has('login'))
             <div class="top-right links">
-                @auth
-                <a href="{{ url('/admin') }}">Area privata</a>
                 @else
                 <a href="{{ route('login') }}">Login</a>
 
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}">Register</a>
                 @endif
-                @endauth
             </div>
             @endif
         </nav>

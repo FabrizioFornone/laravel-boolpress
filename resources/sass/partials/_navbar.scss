@@ -4,6 +4,20 @@
     .username {
         border: none !important;
     }
+
+    .dropdown-menu {
+        background-color: #343a40;
+        color: #f0f0f0;
+
+        .dropdown-item {
+            color: #f0f0f0;
+
+            &:hover {
+                background-color: #343a40;
+                color: #f0f0f0bd;
+            }
+        }
+    }
 }
 
 .navbar-dark .navbar-nav .nav-link {
