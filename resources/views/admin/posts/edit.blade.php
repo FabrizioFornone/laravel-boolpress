@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
 
-          <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+          <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method("patch")
 
@@ -53,8 +53,7 @@
             {{-- Image --}}
             <div class="mb-3">
               <label>Image</label>
-              <input type="text" name="image" class="form-control @error('image') is-invalid @enderror"
-                placeholder="Inserisci l'immagine del post" value="{{ old('image', $post->image) }}" required>
+              <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
               @error('image')
               <div class="invalid-feedback">{{ $message }}</div>
               @enderror

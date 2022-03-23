@@ -34,7 +34,12 @@
                         </router-link>
                     </li>
                     <li class="nav-item active" v-if="user">
-                        <a class="nav-link" href="/admin"> {{ user.name.toUpperCase() }} </a>
+                        <a class="nav-link" href="/admin">
+                            {{ user.name.toUpperCase() }}
+                        </a>
+                        <!-- <a class="nav-link" href="#" @click="logoutMethod"
+                            >Logout</a
+                        > -->
                     </li>
                     <li class="nav-item active" v-if="!user">
                         <a class="nav-link" href="/login"> Login </a>
@@ -74,6 +79,11 @@ export default {
                     window.dispatchEvent(new CustomEvent("storedUserChanged"));
                 });
         },
+        // logoutMethod() {
+        //     localStorage.removeItem("user");
+
+        //     window.dispatchEvent(new CustomEvent("storedUserChanged"));
+        // },
     },
     mounted() {
         this.routes = this.$router

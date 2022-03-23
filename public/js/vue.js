@@ -1948,6 +1948,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     postProp: Object
@@ -2021,6 +2023,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2042,7 +2049,11 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.removeItem("user");
         window.dispatchEvent(new CustomEvent("storedUserChanged"));
       });
-    }
+    } // logoutMethod() {
+    //     localStorage.removeItem("user");
+    //     window.dispatchEvent(new CustomEvent("storedUserChanged"));
+    // },
+
   },
   mounted: function mounted() {
     this.routes = this.$router.getRoutes().filter(function (el) {
@@ -3500,15 +3511,15 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "py-1" }, [
-          _c("span", [_vm._v("Author:  ")]),
-          _vm._v(" " + _vm._s(_vm.postProp.user.name)),
+          _c("span", [_vm._v("Author: ")]),
+          _vm._v(" " + _vm._s(_vm.postProp.user.name) + "\n            "),
         ]),
         _vm._v(" "),
         _vm.postProp.category
           ? _c("div", [
               _c("span", [_vm._v("Category: ")]),
               _vm._v(
-                "  " + _vm._s(_vm.postProp.category.code) + "\n            "
+                " " + _vm._s(_vm.postProp.category.code) + "\n            "
               ),
             ])
           : _vm._e(),
@@ -3611,7 +3622,9 @@ var render = function () {
                         { staticClass: "nav-link", attrs: { href: "/admin" } },
                         [
                           _vm._v(
-                            " " + _vm._s(_vm.user.name.toUpperCase()) + " "
+                            "\n                        " +
+                              _vm._s(_vm.user.name.toUpperCase()) +
+                              "\n                    "
                           ),
                         ]
                       ),

@@ -21,6 +21,14 @@ class PostController extends Controller
 
         $posts->load("user", 'tags', 'category');
 
+        $posts->each(function ($post) {
+
+            if($post->image) {
+                $post->image = asset("storage/" . $post->image);
+            }
+
+        });
+
 
         return response()->json($posts);
     }

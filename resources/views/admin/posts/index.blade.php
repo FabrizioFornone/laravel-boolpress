@@ -6,7 +6,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">Posts List
-                    <a href="{{ route('admin.posts.create')}}"><i class="fa-solid fa-plus"></i></a>
+                    <a href="{{ route('admin.posts.create')}}"><i title="Add" class="fa-solid fa-plus"></i></a>
                 </div>
 
                 <div class="card-body">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <div class="mx-3">
-                                    <a href="{{ route('admin.posts.show', $post->id) }}" title="show"><i
+                                    <a href="{{ route('admin.posts.show', $post->id) }}" title="Show"><i
                                             class="fa-solid fa-eye"></i></a>
                                 </div>
 
@@ -45,7 +45,7 @@
                                     @method("delete")
 
                                     <button type="submit" class="btn btn-link">
-                                        <i class="fa-solid fa-trash"></i>
+                                        <i title="Delete" class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
                             </div>

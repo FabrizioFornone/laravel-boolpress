@@ -7,7 +7,11 @@
             <div class="card">
                 @if ($post->image !== null)
                 <div class="position-absolute img-show d-flex justify-content-center">
-                        <img class="" src="{{$post->image}}" alt="">
+                    <img src="{{asset('storage/' . $post->image) }}" alt="">
+                </div>
+                @else
+                <div class="position-absolute img-show d-flex justify-content-center">
+                    <img src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png" alt="">
                 </div>
                 @endif
                 <div class="card-header d-flex justify-content-between">
