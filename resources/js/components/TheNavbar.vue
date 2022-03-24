@@ -37,6 +37,8 @@
                         <a class="nav-link" href="/admin">
                             {{ user.name.toUpperCase() }}
                         </a>
+                    </li>
+                    <li class="nav-item active" v-if="user">
                         <a class="nav-link" href="#" @click="logoutMethod"
                             >Logout</a
                         >
