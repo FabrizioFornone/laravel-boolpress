@@ -9,7 +9,6 @@
             >
             </PostCard>
         </div>
-        <div v-if="user">Benvenuto {{ user.name }}</div>
     </div>
 </template>
 
@@ -33,7 +32,7 @@ export default {
                 this.posts = res.data;
             });
         },
-        getStoreUser() {
+        getStoredUser() {
             const storedUser = localStorage.getItem("user");
 
             if (storedUser) {
@@ -46,13 +45,13 @@ export default {
     mounted() {
         this.fetchPosts();
 
-        // this.getStoredUser();
+        this.getStoredUser();
 
-        // window.addEventListener("storedUserChanged", () => {
-        //     // ogni volta che cambia l'utente, aggiorniamo la variabile locale.
-        //     this.getStoredUser();
+        window.addEventListener("storedUserChanged", () => {
+            // ogni volta che cambia l'utente, aggiorniamo la variabile locale.
+            this.getStoredUser();
 
-        // });
+        });
     },
 };
 </script>

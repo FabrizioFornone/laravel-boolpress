@@ -20,3 +20,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 
 
 Route::resource('posts', 'Api\PostController');
+
+Route::post("/contacts", "Api\ContactController@store");
+
+

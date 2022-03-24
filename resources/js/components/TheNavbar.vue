@@ -37,9 +37,9 @@
                         <a class="nav-link" href="/admin">
                             {{ user.name.toUpperCase() }}
                         </a>
-                        <!-- <a class="nav-link" href="#" @click="logoutMethod"
+                        <a class="nav-link" href="#" @click="logoutMethod"
                             >Logout</a
-                        > -->
+                        >
                     </li>
                     <li class="nav-item active" v-if="!user">
                         <a class="nav-link" href="/login"> Login </a>
@@ -79,11 +79,16 @@ export default {
                     window.dispatchEvent(new CustomEvent("storedUserChanged"));
                 });
         },
-        // logoutMethod() {
-        //     localStorage.removeItem("user");
+        logoutMethod() {
+            axios.post("/logout").then((resp) => {
 
-        //     window.dispatchEvent(new CustomEvent("storedUserChanged"));
-        // },
+                this.user = null;
+
+                localStorage.removeItem("user");
+
+                window.dispatchEvent(new CustomEvent("storedUserChanged"));
+            });
+        },
     },
     mounted() {
         this.routes = this.$router
