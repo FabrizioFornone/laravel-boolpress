@@ -11,14 +11,17 @@ class NewSiteContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $newContactInfo;
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($_newContactInfo)
     {
-        //
+        $this->newContactInfo = $_newContactInfo;
     }
 
     /**
@@ -28,6 +31,6 @@ class NewSiteContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.newSiteContacts');
+        return $this->view('mails.newSiteContact');
     }
 }
